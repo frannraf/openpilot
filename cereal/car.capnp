@@ -101,6 +101,9 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     fanMalfunction @91;
     cameraMalfunction @92;
     manualSteeringRequired @93;
+    acceleratorDisabled @94;
+    lkasOnly @95;
+    longPreEnable @96;
 
     gasUnavailableDEPRECATED @3;
     dataNeededDEPRECATED @16;
@@ -181,6 +184,7 @@ struct CarState {
   lkMode @37 :Bool;
   readdistancelines @38 :Int16;
   engineRPM @39 :Float32;
+  brakeToggle @40 :Bool;
 
   # which packets this state came from
   canMonoTimes @12: List(UInt64);
