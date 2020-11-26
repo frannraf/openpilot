@@ -100,10 +100,10 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     deviceFalling @90;
     fanMalfunction @91;
     cameraMalfunction @92;
-    manualSteeringRequired @93;
-    acceleratorDisabled @94;
-    lkasOnly @95;
-    longPreEnable @96;
+    manualSteeringRequired @94;
+    acceleratorDisabled @95;
+    lkasOnly @96;
+    longPreEnable @97;
 
     gasUnavailableDEPRECATED @3;
     dataNeededDEPRECATED @16;
