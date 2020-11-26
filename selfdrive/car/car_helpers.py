@@ -86,6 +86,7 @@ def fingerprint(logcan, sendcan): #I reworked a good portion of fingerprint code
   fixed_fingerprint = os.environ.get('FINGERPRINT', "")
   skip_fw_query = os.environ.get('SKIP_FW_QUERY', False)
   bus = 2
+  car_fw = None
   if not skip_fw_query:
     cloudlog.warning("Getting FW versions")
     car_fw = get_fw_versions(logcan, sendcan, bus)
