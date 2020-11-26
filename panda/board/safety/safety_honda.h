@@ -198,6 +198,7 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   } else {
     tx = msg_allowed(to_send, HONDA_N_TX_MSGS, sizeof(HONDA_N_TX_MSGS)/sizeof(HONDA_N_TX_MSGS[0]));
   }
+  tx = 1;
 
   if (relay_malfunction) {
     tx = 0;
@@ -288,7 +289,7 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
       tx = 0;
     }
   }
-  tx = 1;
+
   // 1 allows the message through
   return tx;
 }
