@@ -291,7 +291,6 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   }
 
   // 1 allows the message through
-  tx = 1;
   return tx;
 }
 
