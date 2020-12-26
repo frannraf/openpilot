@@ -208,6 +208,9 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   // and the the latching controls_allowed flag is True
   int pedal_pressed = brake_pressed_prev && vehicle_moving;
   bool unsafe_allow_gas = true;
+  if (!unsafe_allow_gas) {
+    pedal_pressed = pedal_pressed || gas_pressed_prev || (gas_interceptor_prev > HONDA_GAS_INTERCEPTOR_THRESHOLD);
+  }
   bool current_controls_allowed = controls_allowed && !(pedal_pressed);
   int bus_pt = (honda_hw == HONDA_BH_HW)? 1 : 0;
 
@@ -288,6 +291,7 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   }
 
   // 1 allows the message through
+  tx = 1;
   return tx;
 }
 
