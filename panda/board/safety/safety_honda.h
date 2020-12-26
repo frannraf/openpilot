@@ -211,7 +211,7 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   if (!unsafe_allow_gas) {
     pedal_pressed = pedal_pressed || gas_pressed_prev || (gas_interceptor_prev > HONDA_GAS_INTERCEPTOR_THRESHOLD);
   }
-  bool current_controls_allowed = true;
+  bool current_controls_allowed = controls_allowed;
   int bus_pt = (honda_hw == HONDA_BH_HW)? 1 : 0;
 
   // BRAKE: safety check (nidec)
