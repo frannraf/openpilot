@@ -207,7 +207,6 @@ static int honda_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   // disallow actuator commands if gas or brake (with vehicle moving) are pressed
   // and the the latching controls_allowed flag is True
   int pedal_pressed = brake_pressed_prev && vehicle_moving;
-  bool unsafe_allow_gas = true;
   bool current_controls_allowed = controls_allowed && !(pedal_pressed);
   int bus_pt = (honda_hw == HONDA_BH_HW)? 1 : 0;
 
