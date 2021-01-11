@@ -185,6 +185,22 @@ static int honda_fwd_hook(int bus_num, CAN_FIFOMailBox_TypeDef *to_fwd) {
   return bus_fwd;
 }
 
+static int honda_clarity_fwd_hook(int bus_num, CAN_FIFOMailBox_TypeDef *to_fwd) {
+  int bus_fwd = -1;
+  //0x221 is ECON_STATUS
+  //0x255 is ROUGH_WHEEL_SPEED
+  //0x296 is SCM_BUTTONS
+  //0x37B is WIPERS
+
+  if (bus_num == 0) {
+    int addr = GET_ADDR(to_fwd);
+    if((addr==0x255)){
+      bus_fwd = 1;
+    }
+  }
+  return bus_fwd;
+}
+
 static int honda_bosch_fwd_hook(int bus_num, CAN_FIFOMailBox_TypeDef *to_fwd) {
   int bus_fwd = -1;
 
@@ -217,4 +233,13 @@ const safety_hooks honda_bosch_hooks = {
   .tx_lin = nooutput_tx_lin_hook,
   .ignition = default_ign_hook,
   .fwd = honda_bosch_fwd_hook,
+};
+
+const safety_hooks honda_clarity_hooks = {
+  .init = honda_init,
+  .rx = honda_rx_hook,
+  .tx = honda_tx_hook,
+  .tx_lin = nooutput_tx_lin_hook,
+  .ignition = default_ign_hook,
+  .fwd = honda_clarity_fwd_hook,
 };

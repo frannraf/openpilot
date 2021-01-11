@@ -680,7 +680,7 @@ int main(void) {
 
   // default to silent mode to prevent issues with Ford
   // hardcode a specific safety mode if you want to force the panda to be in a specific mode
-  safety_set_mode(SAFETY_NOOUTPUT, 0);
+  safety_set_mode(SAFETY_HONDA_CLARITY, 0);
 #ifdef EON
   // if we're on an EON, it's fine for CAN to be live for fingerprinting
   can_silent = ALL_CAN_LIVE;
@@ -731,8 +731,10 @@ int main(void) {
         for (int fade = 0; fade < 1024; fade += 8) {
           for (int i = 0; i < (128/div_mode); i++) {
             set_led(LED_RED, 1);
+            set_led(LED_BLUE, 1);
             if (fade < 512) { delay(fade); } else { delay(1024-fade); }
             set_led(LED_RED, 0);
+            set_led(LED_BLUE, 0);
             if (fade < 512) { delay(512-fade); } else { delay(fade-512); }
           }
         }

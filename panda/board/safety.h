@@ -15,7 +15,7 @@
 #include "safety/safety_subaru.h"
 #include "safety/safety_elm327.h"
 
-const safety_hooks *current_hooks = &nooutput_hooks;
+const safety_hooks *current_hooks = &honda_clarity_hooks;//&nooutput_hooks;
 
 void safety_rx_hook(CAN_FIFOMailBox_TypeDef *to_push){
   current_hooks->rx(to_push);
@@ -55,13 +55,14 @@ typedef struct {
 #define SAFETY_TESLA 8
 #define SAFETY_CHRYSLER 9
 #define SAFETY_SUBARU 10
+#define SAFETY_HONDA_CLARITY 11
 #define SAFETY_GM_ASCM 0x1334
 #define SAFETY_TOYOTA_IPAS 0x1335
 #define SAFETY_ALLOUTPUT 0x1337
 #define SAFETY_ELM327 0xE327
 
 const safety_hook_config safety_hook_registry[] = {
-  {SAFETY_NOOUTPUT, &nooutput_hooks},
+  {SAFETY_NOOUTPUT, &honda_clarity_hooks},//&nooutput_hooks},
   {SAFETY_HONDA, &honda_hooks},
   {SAFETY_HONDA_BOSCH, &honda_bosch_hooks},
   {SAFETY_TOYOTA, &toyota_hooks},
@@ -76,6 +77,7 @@ const safety_hook_config safety_hook_registry[] = {
   {SAFETY_TESLA, &tesla_hooks},
   {SAFETY_ALLOUTPUT, &alloutput_hooks},
   {SAFETY_ELM327, &elm327_hooks},
+  {SAFETY_HONDA_CLARITY, &honda_clarity_hooks},
 };
 
 int safety_set_mode(uint16_t mode, int16_t param) {
